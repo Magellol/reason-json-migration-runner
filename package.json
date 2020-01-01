@@ -1,0 +1,23 @@
+{
+  "name": "reason-json-migration-runner",
+  "version": "0.1.0",
+  "scripts": {
+    "build": "bsb -make-world",
+    "start": "bsb -make-world -w",
+    "clean": "bsb -clean-world"
+  },
+  "keywords": [
+    "BuckleScript"
+  ],
+  "author": "Thomas Lefebvre <thmslbvr@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "bs-platform": "^7.0.1"
+  },
+  "description": "Remote and local JSON data migration runner",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {}
+}
