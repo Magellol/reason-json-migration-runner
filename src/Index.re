@@ -1,18 +1,13 @@
 module List = Belt.List;
-module Document = {
-  type t;
-  type migration = list(t) => list(t);
+module Migration = {
+  type migrationFn('a) = list('a) => list('a);
 
-  let migrate = (list, fns) => {
+  let migrate = (list: list('a), fns: list(migrationFn('a))) => {
     fns->List.reduce(list, (acc, current) => current(acc));
   };
 };
 
 type document = {id: string};
-let documents = [{id: "0"}, {id: "1"}];
+let documents = [{id: "0"}];
 
-let result =
-  documents->Document.migrate([
-    documents => documents->List.map(doc => {{id: doc.id ++ "-1"}}),
-    documents => documents->List.map(doc => {{id: doc.id ++ "-2"}}),
-  ]);
+let result = documents->Migration.migrate([]);
