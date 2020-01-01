@@ -7,7 +7,17 @@ module Migration = {
   };
 };
 
-type document = {id: string};
-let documents = [{id: "0"}];
+type document = {
+  id: string,
+  foo: option(string),
+};
 
-let result = documents->Migration.migrate([]);
+let documents = [{id: "0", foo: Some("bar")}];
+
+let result =
+  documents->Migration.migrate([
+    json => json->List.map(doc => {{id: doc.id ++ "-migration1", foo: None}}),
+    json => json->List.map(doc => {{id: doc.id ++ "-migration2", foo: Some(doc.id)}}),
+  ]);
+
+Js.log(result);
