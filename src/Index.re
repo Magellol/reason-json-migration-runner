@@ -17,7 +17,16 @@ let documents = [{id: "0", foo: Some("bar")}];
 let result =
   documents->Migration.migrate([
     json => json->List.map(doc => {{id: doc.id ++ "-migration1", foo: None}}),
-    json => json->List.map(doc => {{id: doc.id ++ "-migration2", foo: Some(doc.id)}}),
+    json =>
+      json->List.map(doc => {
+        {id: doc.id ++ "-migration2", foo: Some(doc.id)}
+      }),
   ]);
 
-Js.log(result);
+/**
+ * To dynamically read migration functions stored in `migrations/`:
+ * We could use `bs-dynamic-import` and the node bindings together.
+ *
+ * 1) Iterate over the files in migrations/ through Node's API.
+ * 2) Dynamically import them and execute their functions through `Migration.migrate`.
+ */;
