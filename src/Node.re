@@ -1,4 +1,5 @@
 [@bs.val] external __dirname: string = "__dirname";
+[@bs.val] external require: (string) => 'a = "require";
 
 module Fs = {
   [@bs.deriving jsConverter]
