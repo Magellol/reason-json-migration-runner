@@ -1,3 +1,6 @@
+# WORK IN PROGRESS
+Do not use. Please. 
+
 # reason-json-migration-runner
 
 Runs  migration functions on remote or local JSON data.
